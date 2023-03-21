@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider<MoviesBloc>(
           create: (BuildContext context) {
-            return MoviesBloc(sl());
+            return MoviesBloc(sl(),sl(),sl());
           },
           child: const MainMoviesScreen()),
     );
