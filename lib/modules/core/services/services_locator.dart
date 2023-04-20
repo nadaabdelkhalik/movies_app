@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:movies_app/modules/movies/domain/usecase/get_movie_details.dart';
 import 'package:movies_app/modules/movies/domain/usecase/get_popular_movies.dart';
+import 'package:movies_app/modules/movies/domain/usecase/get_recommendations.dart';
 import 'package:movies_app/modules/movies/domain/usecase/get_top_rated_movies.dart';
 
 import '../../movies/data/data_source/base_movies_remote_data_source.dart';
@@ -26,4 +28,8 @@ void setUp() {
     () => GetTopRatedMovies(sl()),
   );
   sl.registerLazySingleton<GetPopularMovies>(() => GetPopularMovies(sl()));
+  sl.registerLazySingleton<GetMovieDetails>(
+      () => GetMovieDetails(repository: sl()));
+  sl.registerLazySingleton<GetRecommendations>(
+      () => GetRecommendations(repository: sl()));
 }

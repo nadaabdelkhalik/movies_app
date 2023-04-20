@@ -32,9 +32,8 @@ class MainMoviesScreen extends StatelessWidget {
                 const NowPlaying(),
                 Container(
                   margin: const EdgeInsets.fromLTRB(16.0, 24.0, 16.0, 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                  child: 
+                   
                       Text(
                         "Popular",
                         style: GoogleFonts.poppins(
@@ -43,25 +42,9 @@ class MainMoviesScreen extends StatelessWidget {
                           letterSpacing: 0.15,
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          /// TODO : NAVIGATION TO POPULAR SCREEN
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: const [
-                              Text('See More'),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16.0,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                     
+                    
+                
                 ),
                 const Popular(),
                 Container(
@@ -71,9 +54,8 @@ class MainMoviesScreen extends StatelessWidget {
                     16.0,
                     8.0,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                  child: 
+                    
                       Text(
                         "Top Rated",
                         style: GoogleFonts.poppins(
@@ -82,25 +64,9 @@ class MainMoviesScreen extends StatelessWidget {
                           letterSpacing: 0.15,
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          /// TODO : NAVIGATION TO Top Rated Movies Screen
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: const [
-                              Text('See More'),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16.0,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                      
+                   
+                  
                 ),
                 const TopRated(),
                 const SizedBox(height: 50.0),
