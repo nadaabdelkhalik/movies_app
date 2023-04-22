@@ -250,13 +250,13 @@ class MovieDetailContent extends StatelessWidget {
                     imageUrl:
                         "${Constants.imageBaseURL}${recommendation.backdropPath}",
                     placeholder: (context, url) => Shimmer.fromColors(
-                      baseColor: Colors.blue,
-                      highlightColor: Colors.blue,
+                      baseColor: const Color.fromARGB(255, 3, 24, 56),
+                      highlightColor: const Color.fromARGB(255, 3, 24, 56),
                       child: Container(
                         height: 170.0,
                         width: 120.0,
                         decoration: BoxDecoration(
-                          color: Colors.blue,
+                          color: const Color.fromARGB(255, 3, 24, 56),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
