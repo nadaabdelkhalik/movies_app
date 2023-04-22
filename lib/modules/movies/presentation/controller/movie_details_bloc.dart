@@ -10,11 +10,12 @@ import 'movie_details_event.dart';
 
 part 'movie_details_state.dart';
 
-class MovieDetailsBloc extends Bloc<dynamic, dynamic> {
+class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MoviesDetailsStates> {
   final GetMovieDetails getMovieDetails;
-   final GetRecommendations getRecommendations;
-   
-  MovieDetailsBloc(this.getMovieDetails, this.getRecommendations) : super(const MovieDetailsState()) {
+  final GetRecommendations getRecommendations;
+
+  MovieDetailsBloc(this.getMovieDetails, this.getRecommendations)
+      : super(const MoviesDetailsStates()) {
     on<GetMovieDetailsEvent>((event, emit) async {
       final result = await getMovieDetails.execute(event.movieId);
       result.fold(
@@ -24,15 +25,15 @@ class MovieDetailsBloc extends Bloc<dynamic, dynamic> {
             movieDetails: r, requestState: RequestState.succeed)),
       );
     });
-     on<GetRecommendationsEvent>((event, emit) async {
+    on<GetRecommendationsEvent>((event, emit) async {
       final result = await getRecommendations.execute(event.movieId);
       result.fold(
         (l) => emit(state.copyWith(
-          recommendationRequestState:RequestState.failed,
-          recommendationsMessage: l
-            )),
+            recommendationRequestState: RequestState.failed,
+            recommendationsMessage: l)),
         (r) => emit(state.copyWith(
-            recommendations: r, recommendationRequestState: RequestState.succeed)),
+            recommendations: r,
+            recommendationRequestState: RequestState.succeed)),
       );
     });
   }

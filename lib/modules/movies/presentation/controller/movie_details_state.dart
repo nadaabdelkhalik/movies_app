@@ -1,47 +1,48 @@
 part of 'movie_details_bloc.dart';
 
-class MovieDetailsState extends Equatable {
-  const MovieDetailsState(
-      {this.movieDetails,
+class MoviesDetailsStates extends Equatable {
+  const MoviesDetailsStates(
+      {this.movieDetails = const MovieDetails(
+          id: 1,
+          genres: [Genres(name: '', id: 1)],
+          backdropPath: "?? /kqjL17yufvn90vLyXYpvtyrFfak.jpg",
+          title: '',
+          overview: '',
+          voteAverage: 6.7,
+          releaseDate: '',
+          runTime: 2),
       this.requestState = RequestState.loading,
-      this.movieDetailsMessage = ''});
-  final MovieDetails? movieDetails;
-  final RequestState requestState;
-  final String movieDetailsMessage;
-
-  @override
-  List<Object>get props => [movieDetailsMessage, requestState,];
-
-  MovieDetailsState copyWith({
-    MovieDetails? movieDetails,
-    RequestState? requestState,
-    String? movieDetailsMessage,
-  }) {
-    return MovieDetailsState(
-        movieDetails: movieDetails ?? this.movieDetails,
-        movieDetailsMessage: movieDetailsMessage ?? this.movieDetailsMessage,
-        requestState: requestState ?? this.requestState);
-  }
-}
-
-class RecommendationsState extends Equatable {
-  const RecommendationsState(
-      {this.recommendations = const [],
+      this.movieDetailsMessage = '',
+      this.recommendations = const [],
       this.recommendationRequestState = RequestState.loading,
       this.recommendationsMessage = ''});
+  final MovieDetails movieDetails;
+  final RequestState requestState;
+  final String movieDetailsMessage;
   final List<Recommendations> recommendations;
   final RequestState recommendationRequestState;
   final String recommendationsMessage;
-
   @override
-  List<Object> get props =>
-      [recommendationsMessage, recommendationRequestState, recommendations];
+  List<Object?> get props => [
+        movieDetails,
+        movieDetailsMessage,
+        recommendationRequestState,
+        recommendations,
+        recommendationsMessage,
+        requestState
+      ];
 
-  RecommendationsState copyWith(
-      {List<Recommendations>? recommendations,
+  MoviesDetailsStates copyWith(
+      {MovieDetails? movieDetails,
+      RequestState? requestState,
+      String? movieDetailsMessage,
+      List<Recommendations>? recommendations,
       RequestState? recommendationRequestState,
       String? recommendationsMessage}) {
-    return RecommendationsState(
+    return MoviesDetailsStates(
+        movieDetails: movieDetails ?? this.movieDetails,
+        movieDetailsMessage: movieDetailsMessage ?? this.movieDetailsMessage,
+        requestState: requestState ?? this.requestState,
         recommendations: recommendations ?? this.recommendations,
         recommendationsMessage:
             recommendationsMessage ?? this.recommendationsMessage,

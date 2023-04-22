@@ -11,7 +11,6 @@ import 'package:movies_app/modules/movies/presentation/controller/movie_details_
 
 import 'package:shimmer/shimmer.dart';
 
-
 class MovieDetailScreen extends StatelessWidget {
   final int id;
 
@@ -26,6 +25,7 @@ class MovieDetailScreen extends StatelessWidget {
       lazy: false,
       child: const Scaffold(
         body: MovieDetailContent(),
+        backgroundColor: Color.fromARGB(255, 3, 24, 56),
       ),
     );
   }
@@ -38,7 +38,7 @@ class MovieDetailContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MovieDetailsBloc, dynamic>(
+    return BlocBuilder<MovieDetailsBloc, MoviesDetailsStates>(
       builder: (context, state) {
         return CustomScrollView(
           key: const Key('movieDetailScrollView'),
@@ -56,8 +56,8 @@ class MovieDetailContent extends StatelessWidget {
                         end: Alignment.bottomCenter,
                         colors: [
                           Colors.transparent,
-                          Colors.black,
-                          Colors.black,
+                          Color.fromARGB(255, 3, 24, 56),
+                          Color.fromARGB(255, 3, 24, 56),
                           Colors.transparent,
                         ],
                         stops: [0.0, 0.5, 1.0, 1.0],
@@ -65,9 +65,12 @@ class MovieDetailContent extends StatelessWidget {
                         Rect.fromLTRB(0.0, 0.0, rect.width, rect.height),
                       );
                     },
-                    blendMode: BlendMode.dstIn,
                     child: CachedNetworkImage(
                       width: MediaQuery.of(context).size.width,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(
+                        color: Color.fromARGB(255, 3, 24, 56),
+                      ),
                       imageUrl:
                           "${Constants.imageBaseURL}${state.movieDetails.backdropPath}",
                       fit: BoxFit.cover,
@@ -100,7 +103,7 @@ class MovieDetailContent extends StatelessWidget {
                               horizontal: 8.0,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.grey[800],
+                              color: Colors.blue,
                               borderRadius: BorderRadius.circular(4.0),
                             ),
                             child: Text(
@@ -121,7 +124,7 @@ class MovieDetailContent extends StatelessWidget {
                               ),
                               const SizedBox(width: 4.0),
                               Text(
-                                (state.movieDetails.voteAverage / 2)
+                                (state.movieDetails.voteAverage)
                                     .toStringAsFixed(1),
                                 style: const TextStyle(
                                   fontSize: 16.0,
@@ -142,7 +145,7 @@ class MovieDetailContent extends StatelessWidget {
                           ),
                           const SizedBox(width: 16.0),
                           Text(
-                            _showDuration(state.movieDetails.runtime),
+                            _showDuration(state.movieDetails.runTime),
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 16.0,
@@ -193,7 +196,6 @@ class MovieDetailContent extends StatelessWidget {
                 ),
               ),
             ),
-            // Tab(text: 'More like this'.toUpperCase()),
             SliverPadding(
               padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 24.0),
               sliver: _showRecommendations(),
@@ -229,7 +231,7 @@ class MovieDetailContent extends StatelessWidget {
   }
 
   Widget _showRecommendations() {
-    return BlocBuilder<MovieDetailsBloc, dynamic>(
+    return BlocBuilder<MovieDetailsBloc, MoviesDetailsStates>(
       builder: (context, state) {
         return SliverGrid(
           delegate: SliverChildBuilderDelegate(
@@ -242,15 +244,15 @@ class MovieDetailContent extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                   child: CachedNetworkImage(
                     imageUrl:
-                        "${Constants.imageBaseURL}${recommendation.backdropPath}",
+                        "${Constants.imageBaseURL}${recommendation.backdropPat}",
                     placeholder: (context, url) => Shimmer.fromColors(
-                      baseColor: Colors.grey[850]!,
-                      highlightColor: Colors.grey[800]!,
+                      baseColor: Colors.blue,
+                      highlightColor: Colors.blue,
                       child: Container(
                         height: 170.0,
                         width: 120.0,
                         decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: Colors.blue,
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
