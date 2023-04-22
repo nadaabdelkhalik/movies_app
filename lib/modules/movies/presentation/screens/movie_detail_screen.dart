@@ -55,10 +55,10 @@ class MovieDetailContent extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.transparent,
-                          Color.fromARGB(255, 3, 24, 56),
-                          Color.fromARGB(255, 3, 24, 56),
-                          Colors.transparent,
+                          Colors.white,
+                          Colors.blue,
+                          Colors.blue,
+                          Colors.white,
                         ],
                         stops: [0.0, 0.5, 1.0, 1.0],
                       ).createShader(
@@ -232,11 +232,15 @@ class MovieDetailContent extends StatelessWidget {
 
   Widget _showRecommendations() {
     return BlocBuilder<MovieDetailsBloc, MoviesDetailsStates>(
+      buildWhen: (previous, current) =>
+          previous.recommendationRequestState !=
+          current.recommendationRequestState,
       builder: (context, state) {
         return SliverGrid(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               final recommendation = state.recommendations[index];
+              
               return FadeInUp(
                 from: 20,
                 duration: const Duration(milliseconds: 500),
@@ -244,7 +248,7 @@ class MovieDetailContent extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                   child: CachedNetworkImage(
                     imageUrl:
-                        "${Constants.imageBaseURL}${recommendation.backdropPat}",
+                        "${Constants.imageBaseURL}${recommendation.backdropPath}",
                     placeholder: (context, url) => Shimmer.fromColors(
                       baseColor: Colors.blue,
                       highlightColor: Colors.blue,

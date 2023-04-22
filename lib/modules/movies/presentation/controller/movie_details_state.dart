@@ -5,7 +5,7 @@ class MoviesDetailsStates extends Equatable {
       {this.movieDetails = const MovieDetails(
           id: 1,
           genres: [Genres(name: '', id: 1)],
-          backdropPath: "?? /kqjL17yufvn90vLyXYpvtyrFfak.jpg",
+          backdropPath:"",
           title: '',
           overview: '',
           voteAverage: 6.7,

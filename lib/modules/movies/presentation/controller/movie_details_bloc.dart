@@ -29,7 +29,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MoviesDetailsStates> {
       final result = await getRecommendations.execute(event.movieId);
       result.fold(
         (l) => emit(state.copyWith(
-            recommendationRequestState: RequestState.failed,
+           recommendationRequestState: RequestState.failed,
             recommendationsMessage: l)),
         (r) => emit(state.copyWith(
             recommendations: r,
